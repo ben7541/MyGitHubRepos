@@ -1,0 +1,46 @@
+
+
+@請依照下列步驟說明執行:
+	
+
+	步驟一: 將附件的憑證檔案(*.cer)下載後，存放至 C:\ 槽下。
+
+	
+	步驟二: 以「系統管理員身份」開啟/執行【命令提示字元】視窗，其開啟方式如下所示。(注意:一定要是 "系統管理員身份" 才能順利匯入憑證)
+	
+			1.	選擇 [開始]，在 [搜尋程式和檔案] 方塊中鍵入 cmd。
+			
+			2.	於搜尋結果中，請在【命令提示字元】上，點選滑鼠右鍵，並選擇 [以系統管理員身份執行]，以呼叫出【命令提示字元】視窗。
+			
+	
+	步驟三: 將憑證匯入JDK 之中。(請按照順序執行下列指令)
+			
+			1.請於【命令提示字元】中輸入下列指令:(包括雙引號)
+			
+				>> "C:\Program Files\Java\jdk1.8.0_241\bin\keytool" -importcert -trustcacerts -alias gdairysslca -file "C:/GDAIRY.cer" -keystore "C:\Program Files\Java\jdk1.8.0_241\jre\lib\security\cacerts" -storepass changeit 
+			
+			
+			2.當執行上述指令後，即會出現提示訊息「信任這個憑證？」，這時請輸入【Y】並按下【Enter】鍵即可。
+
+	
+	步驟四: 將憑證匯入JRE 之中。(請按照順序執行下列指令)
+			
+			1.請於【命令提示字元】中輸入下列指令:(包括雙引號)
+			
+				>> "C:\Program Files\Java\jdk1.8.0_241\bin\keytool" -importcert -trustcacerts -alias gdairysslca -file "C:/GDAIRY.cer" -keystore "C:\Program Files\Java\jre1.8.0_241\lib\security\cacerts" -storepass changeit 
+			
+			
+			2.當執行上述指令後，即會出現提示訊息「憑證已經存在您仍然想要將之新增至自己的金鑰儲存庫嗎？」，這時請輸入【Y】並按下【Enter】鍵即可。
+			
+	
+	步驟五:	查看上述憑證是否已被匯入。
+	
+			1.請於【命令提示字元】中輸入下列指令:(包括雙引號)
+			
+				>> "C:\Program Files\Java\jdk1.8.0_241\bin\keytool" -list -alias gdairysslca -keystore "C:/Program Files/Java/jdk1.8.0_241/jre/lib/security/cacerts" -storepass changeit
+	
+				>> "C:\Program Files\Java\jdk1.8.0_241\bin\keytool" -list -alias gdairysslca -keystore "C:/Program Files/Java/jre1.8.0_241/lib/security/cacerts" -storepass changeit
+	
+
+	步驟六: 刪除剛才存放至 C:\ 槽下的憑證檔案(*.cer)。	
+
